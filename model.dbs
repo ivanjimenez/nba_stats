@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="nba1" id="Project_389" database="MySql" >
+	<schema name="nba1" >
+		<table name="Seasons_Teams" >
+			<column name="Teams_ID" type="int" jt="4" />
+			<column name="Seasons_ID" type="int" jt="4" />
+			<fk name="Fk_Seasons_Teams1" to_schema="nba1" to_table="Teams" >
+				<fk_column name="Teams_ID" pk="idTeams" />
+			</fk>
+			<fk name="Fk_Seasons_Teams2" to_schema="nba1" to_table="seasons" >
+				<fk_column name="Seasons_ID" pk="idseason" />
+			</fk>
+		</table>
+		<table name="Teams" >
+			<column name="idTeams" type="int" jt="4" mandatory="y" />
+			<column name="Name" type="varchar" length="100" jt="12" />
+			<column name="Conference" type="enum" jt="12" >
+				<enumeration><![CDATA[E,N,NE,W,S]]></enumeration>
+			</column>
+			<index name="Pk_Teams_idTeams" unique="PRIMARY_KEY" >
+				<column name="idTeams" />
+			</index>
+		</table>
+		<table name="seasons" prior="Seasons" >
+			<column name="idseason" prior="idSeason" type="int" jt="4" mandatory="y" />
+			<column name="year" prior="Year" type="varchar" length="50" jt="12" />
+			<index name="pk_seasons_idseason" unique="PRIMARY_KEY" >
+				<column name="idseason" />
+			</index>
+		</table>
+		<table name="stats" prior="Stats" >
+			<column name="idstat" prior="idStat" type="int" jt="4" mandatory="y" />
+			<index name="pk_stats_idstat" unique="PRIMARY_KEY" >
+				<column name="idstat" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_2366" confirmed="y" show_relation="columns" >
+		<entity schema="nba1" name="Seasons_Teams" color="3986C1" x="496" y="192" />
+		<entity schema="nba1" name="Teams" color="C1D8EE" x="208" y="192" />
+		<entity schema="nba1" name="seasons" color="C1D8EE" x="784" y="208" />
+		<callout x="48" y="48" pointer="Round" >
+			<comment><![CDATA[Right-click the layout to create entities or shapes, create relations using drag and drop.
+Save the design to file. Use the Convert menu option to convert the model to a physical model.]]></comment>
+		</callout>
+	</layout>
+</project>
